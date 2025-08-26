@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy 2nd Anniversary, My Love</title>
+  <meta name="description" content="A romantic page with floating hearts and background slideshow." />
+  <style>
+    :root{
+      --primary:#ff4d6d;
+      --text:#2a2a2a;
+      --glow: rgba(255,77,109,.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      overflow:hidden;
+    }
+
+    /* Background slideshow */
+    .slideshow{
+      position:fixed; inset:0; z-index:0;
+    }
+    .slideshow img{
+      position:absolute; width:100%; height:100%; object-fit:cover;
+      opacity:0; animation: fade 24s infinite;
+    }
+    .slideshow img:nth-child(1){animation-delay:0s}
+    .slideshow img:nth-child(2){animation-delay:6s}
+    .slideshow img:nth-child(3){animation-delay:12s}
+    .slideshow img:nth-child(4){animation-delay:18s}
+
+    @keyframes fade{
+      0%,100%{opacity:0}
+      10%,30%{opacity:1}
+      40%,90%{opacity:0}
+    }
+
+    /* Floating hearts container */
+    .hearts{
+      position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:1;
+      filter: drop-shadow(0 6px 12px rgba(255,77,109,.25));
+    }
+
+    /* Center card */
+    .card{
+      position:relative; z-index:2; max-width:720px; margin:10vh auto; padding:2.5rem 2rem; text-align:center;
+      background:rgba(255,255,255,.25);
+      backdrop-filter: blur(4px) saturate(140%);
+      border-radius:28px; box-shadow: 0 20px 60px rgba(0,0,0,.1), 0 0 0 1px rgba(255,255,255,.4) inset;
+      animation: fadeIn .9s ease-out both;
+    }
+    .title{font-size:clamp(28px,5vw,54px); line-height:1.1; margin:0 0 .4rem; color:#d6336c; text-shadow:0 2px 8px rgba(214,51,108,.18)}
+    .subtitle{font-size:clamp(16px,2.6vw,20px); opacity:.9; margin:0 0 1.25rem; color: rgba(255, 255, 255, 0.8)}
+    .message{font-size:clamp(16px,2.6vw,19px); margin:0 auto 1.25rem; max-width:56ch; color: rgba(255, 255, 255, 0.8);}
+    .sig{margin-top:1rem; font-weight:600; color: rgba(255, 255, 255, 0.8)}
+
+    /* Rotating badge */
+    .badge{
+      display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .9rem; border-radius:999px; background:rgba(255,77,109,.12); color:#b21e4b; font-weight:600; letter-spacing:.2px; font-size:14px;
+      box-shadow:0 8px 18px rgba(178,30,75,.12) inset, 0 1px 0 rgba(255,255,255,.7);
+      min-width: 180px;
+      justify-content:center;
+    }
+    .badge .dot{width:8px; height:8px; background:var(--primary); border-radius:50%; box-shadow:0 0 16px var(--glow)}
+
+    .buttons{display:flex; gap:.75rem; justify-content:center; margin-top:1.25rem; flex-wrap:wrap}
+    .btn{appearance:none; border:none; cursor:pointer; padding:.8rem 1.1rem; border-radius:14px; font-weight:700; letter-spacing:.2px}
+    .btn-primary{background:var(--primary); color:#fff; box-shadow:0 12px 24px rgba(255,77,109,.3)}
+    .btn-ghost{background:rgba(255,255,255,.7);}
+
+    @keyframes fadeIn{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
+
+    /* Heart elements */
+    .heart{
+      position:absolute; font-size:24px; user-select:none; will-change: transform, opacity;
+      animation-name: floatUp; animation-timing-function: cubic-bezier(.22,.61,.36,1);
+      color:var(--primary);
+    }
+
+    @keyframes floatUp{
+      0%{ transform: translate(var(--x,0), var(--startY,0)) scale(var(--s,1)) rotate(var(--r,0deg)); opacity:0 }
+      10%{opacity:.95}
+      70%{opacity:.95}
+      100%{ transform: translate(var(--xEnd,0), -120vh) scale(var(--s,1)) rotate(calc(var(--r,0deg) + 30deg)); opacity:0 }
+    }
+
+    @media (max-width:420px){
+      .card{margin:8vh 14px; padding:1.75rem 1.1rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow">
+    <img src="img/WhatsApp Image 2025-08-26 at 00.08.24_b6fcc692.jpg" alt="Photo 1" />
+    <img src="img/WhatsApp Image 2025-08-26 at 00.23.34_1c8393ad.jpg" alt="Photo 2" />
+    <img src="img/WhatsApp Image 2025-08-26 at 00.23.34_5060ebaa.jpg" alt="Photo 3" />
+    <img src="img/WhatsApp Image 2025-08-26 at 00.30.46_675d8fad.jpg" alt="Photo 4" />
+  </div>
+
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+  <main class="card" role="main" aria-label="Anniversary message">
+    <div class="badge"><span class="dot"></span> <span class="text" id="badgeText">2 years of us 💞</span></div>
+    <h1 class="title">Happy 2nd Anniversary, My Love</h1>
+    <p class="subtitle">Since <strong>August 26, 2023</strong> and forever to go.</p>
+
+    <p class="message">
+      Every day with you is my favorite day. I love your smile, your eyes, your heart, you are the best gift DUFUHS gave me. 
+      Heck, You are a Dream Come True. Thank you for choosing me again and again. I love you more than words, more than distance, more than anything, with everything I am,
+       so much that it burns.💗
+    </p>
+
+    <p class="sig">— Yours, Always & Forever💗</p>
+
+    <div class="buttons">
+      <button class="btn btn-primary" id="moreHearts">Make it rain hearts</button>
+      <button class="btn btn-ghost" id="pause">Pause / Resume</button>
+    </div>
+  </main>
+
+  <script>
+    const container = document.getElementById('hearts');
+    const moreBtn = document.getElementById('moreHearts');
+    const pauseBtn = document.getElementById('pause');
+    const badgeText = document.getElementById('badgeText');
+
+    let running = true;
+    let baseInterval = 260;
+
+    function rand(min, max){ return Math.random() * (max - min) + min }
+
+    function spawnHeart(burst=false){
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = Math.random() < .2 ? '💖' : (Math.random() < .5 ? '💗' : '❤');
+
+      const startX = rand(-10, 110);
+      const driftX = startX + rand(-8, 8);
+      const duration = rand(6, 13);
+      const size = rand(16, 42);
+      const rotate = rand(-20, 20);
+
+      el.style.left = startX + 'vw';
+      el.style.bottom = '-40px';
+      el.style.setProperty('--x', '0');
+      el.style.setProperty('--xEnd', (driftX - startX) + 'vw');
+      el.style.setProperty('--startY', '0');
+      el.style.setProperty('--s', (size/24).toFixed(2));
+      el.style.setProperty('--r', rotate + 'deg');
+      el.style.opacity = '0';
+      el.style.animationDuration = duration + 's';
+
+      container.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+
+      if(burst){
+        el.style.animationDelay = rand(0, .6) + 's';
+      }
+    }
+
+    let ticker = setInterval(() => { if(running) spawnHeart(); }, baseInterval);
+    for(let i=0;i<24;i++) spawnHeart(true);
+
+    moreBtn.addEventListener('click', () => {
+      for(let i=0;i<36;i++) setTimeout(() => spawnHeart(true), i*30);
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      running = !running;
+      pauseBtn.textContent = running ? 'Pause' : 'Resume';
+    });
+
+    // Badge text rotation every 1.5s
+    const messages = ["2 years of us 💞", "And many more to come ✨"];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % messages.length;
+      badgeText.textContent = messages[index];
+    }, 1500);
+  </script>
+</body>
+</html>
